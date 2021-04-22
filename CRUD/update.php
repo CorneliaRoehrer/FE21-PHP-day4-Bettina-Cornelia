@@ -58,7 +58,7 @@ if  ($_GET['id']) {
                        <input type= "hidden"  name= "id"  value= "<?php echo $data['id'] ?>" />
                        <input type= "hidden"  name= "picture"  value= "<?php echo $data['picture'] ?>"/>
                        <td><button class ="btn btn-success" type = "submit">Save Changes</button></td>
-                       <td><a href= "index.php" ><button class ="btn btn-warning" type ="button">Back </button></a ></td>
+                       <td><a href= "index.php"><button class ="btn btn-warning" type ="button">Back </button></a ></td>
                    </tr>
                </table>
            </form>
