@@ -8,7 +8,7 @@ if ($_POST) {
     $uploadError = "";
     $picture = file_upload($_FILES['picture']);
 
-    $sql = "INSERT INTO products(name, price, picture) VALUES ('$name", '$price', '$picture->fileName')";
+    $sql = "INSERT INTO products(name, price, picture) VALUES ('$name', '$price', '$picture->fileName')";
 
     if ($connect ->query($sql) === true) {
         $class = "success";
@@ -44,7 +44,7 @@ if ($_POST) {
             <div class="alert alert-<?=$class;?>" role="alert">
             <p><?php echo ($message) ?? ''; ?></p>
                 <p><?php echo ($uploadError) ?? ''; ?></p>
-                <a href='../index.php'>< button class="btn btn-primary"  type='button'>Home</button ></a>
+                <a href='../index.php'>< button class="btn btn-primary"  type='button'>Home</button></a>
         </div >
     </div>
 </body>
