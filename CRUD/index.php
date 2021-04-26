@@ -42,7 +42,6 @@ function cleanInput($var){
     return $result;
 }
 
-
 // Call function
 cleanInput($email);
 cleanInput($pass);
@@ -62,27 +61,28 @@ if (empty($pass)) {
 
 // if there's no error, continue to login
 if (!$error) {
-    $password = hash('sha256', $pass); // password hashing
-    $sqlSelect = "SELECT id, first_name, password, status FROM user WHERE email = ? ";
 
-$stmt = $connect ->prepare($sqlSelect);
-$stmt->bind_param("s, $email");
-$work = $stmt->execute();
-$result = $stmt->get_result();
-$row = $result->fetch_assoc();
-$count = $result->num_rows;
-if ($count == 1 && $row['password'] == $password) {
-    if($row['status'] == 'adm'){
-        $_SESSION['adm'] == $row['id'];
-        header("Location:dashboard.php");} 
+    $password = hash('sha256', $pass); // password hashing
+
+    $sqlSelect = "SELECT id, first_name, password, status FROM user WHERE email = ? ";
+    $stmt = $connect->prepare($sqlSelect);
+    $stmt->bind_param("s", $email);
+    $work = $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $count = $result->num_rows;
+    if ($count == 1 && $row['password'] == $password) {
+        if($row['status'] == 'adm'){
+            $_SESSION['adm'] = $row['id'];           
+            header( "Location: dashboard.php");}
         else{
-        $_SESSION['user'] = $row['id'];
-        header ("Location: home.php");
-        }
-    } else{
-        $errMSG = "Incorrect Credentials, Try again Loser....":
+                $_SESSION['user'] = $row['id']; 
+            header( "Location: home.php");
+            }          
+        } else {
+        $errMSG = "Incorrect Credentials, Try again...";
     }
-    }
+}
 }
 
 $connect->close();
