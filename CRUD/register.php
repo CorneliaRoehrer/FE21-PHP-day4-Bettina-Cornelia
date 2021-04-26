@@ -9,8 +9,8 @@ if (isset($_SESSION['adm']) !="") {
 require_once 'actions/db_connect.php';
 require_once 'actions/file_upload.php';
 $error = false;
-$fname = $lname = $email = $date_of_birth = $pass = $picture = "";
-$fnameError = $lnameError = $emailError = $dateError = $passError = $picError = "";
+$fname = $lname = $email = $date_of_birth = $pass = $picture = '';
+$fnameError = $lnameError = $emailError = $dateError = $passError = $picError = '';
 if (isset($_POST['btn-signup'])) {
 
 // Function to clean up Input
