@@ -13,23 +13,54 @@ $fname = $lname = $email = $date_of_birth = $pass = $picture = "";
 $fnameError = $lnameError = $emailError = $dateError = $passError = $picError = "";
 if (isset($_POST['btn-signup'])) {
 
-// Function to clean up Input
-function cleanInput($var){
-    $result = trim($var);
-    $result = strip_tags($result);
-    $result = htmlspecialchars($result);
-    return $result;
-}
+    //  sanitize user input to prevent sql injection
+    $fname = trim($_POST['fname']);
+ 
+     //trim - strips whitespace (or other characters) from the beginning and end of a string
+    $fname = strip_tags($fname);
+ 
+    // strip_tags -- strips HTML and PHP tags from a string
+ 
+    $fname = htmlspecialchars($fname);
+    // htmlspecialchars converts special characters to HTML entities
+    
+    $lname = trim($_POST['lname']);
+    $lname = strip_tags($lname);
+    $lname = htmlspecialchars($lname);    
+ 
+    $email = trim($_POST['email']);
+    $email = strip_tags($email);
+    $email = htmlspecialchars($email);
+ 
+    $date_of_birth = trim($_POST['date_of_birth']);
+    $date_of_birth = strip_tags($date_of_birth);
+    $date_of_birth = htmlspecialchars($date_of_birth);
+ 
+    $pass = trim($_POST['pass']);
+    $pass = strip_tags($pass);
+    $pass = htmlspecialchars($pass);
+ 
+    $uploadError = '';
+    $picture = file_upload($_FILES['picture']);
+ 
+
+//  Function to clean up Input
+// function cleanInput($var){
+//     $result = trim($var);
+//     $result = strip_tags($result);
+//     $result = htmlspecialchars($result);
+//     return $result;
+// }
 
 // Call function
-cleanInput($lname);
-cleanInput($fname);
-cleanInput($email);
-cleanInput($date_of_birth);
-cleanInput($pass);
+// cleanInput($lname);
+// cleanInput($fname);
+// cleanInput($email);
+// cleanInput($date_of_birth);
+// cleanInput($pass);
 
-$uploadError = "";
-$picture = file_upload($_FILES['picture']);
+// $uploadError = "";
+// $picture = file_upload($_FILES['picture']);
 
  // basic name validation
 if(empty($fname) || empty($lanme)) {
